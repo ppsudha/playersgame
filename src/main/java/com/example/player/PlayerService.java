@@ -41,7 +41,7 @@ public class PlayerService implements PlayerRepository {
     @Override
     public void deletePlayer(int playerId){
         Player player=team.get(playerId);
-
+         
         if(player == null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -59,12 +59,12 @@ public class PlayerService implements PlayerRepository {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
 
-        if (player.getName() != null) {
-            existingPlayer.setName(player.getName());
+        if (player.getplayerName() != null) {
+            existingPlayer.setplayerName(player.getplayerName());
         }
         
-        if (player.getNumber() != null) {
-            existingPlayer.setNumber(player.getNumber());
+        if (String.valueOf(player.getjerseyNumber()) != null) {
+            existingPlayer.setjerseyNumber(player.getjerseyNumber());
         }
         if (player.getrole() != null) {
             existingPlayer.setrole(player.getrole());
@@ -74,7 +74,7 @@ public class PlayerService implements PlayerRepository {
     }
      @Override
     public Player addPlayer(Player player) {
-        player.setId(uniquePlayerId);
+        player.setplayerId(uniquePlayerId);
         team.put(uniquePlayerId, player);
         uniquePlayerId += 1;
 
@@ -88,8 +88,8 @@ public class PlayerService implements PlayerRepository {
         return players;
     }
     @Override
-    public Player getPlayerById(int playId){
-        Player player=team.get(playId);
+    public Player getPlayerById(int playerId){
+        Player player=team.get(playerId);
         if(player==null){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
